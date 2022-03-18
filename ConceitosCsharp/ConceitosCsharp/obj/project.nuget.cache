@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "APYVxwCykcblqOfM5T4v7ZYVWudE/lxSOCSJKBjPodto/yHgykgiiuHQ5eRe0CL8d3Ea++7sx/Ada1j534DiSA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\taill\\OneDrive\\Documents\\Conceitos\\ConceitosCsharp\\ConceitosCsharp\\ConceitosCsharp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\taill\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}
