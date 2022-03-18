@@ -1,0 +1,16 @@
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\bin\Debug\net5.0\ConceitosCsharp.exe
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\bin\Debug\net5.0\ConceitosCsharp.deps.json
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\bin\Debug\net5.0\ConceitosCsharp.runtimeconfig.json
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\bin\Debug\net5.0\ConceitosCsharp.runtimeconfig.dev.json
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\bin\Debug\net5.0\ConceitosCsharp.dll
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\bin\Debug\net5.0\ref\ConceitosCsharp.dll
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\bin\Debug\net5.0\ConceitosCsharp.pdb
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\obj\Debug\net5.0\ConceitosCsharp.csproj.AssemblyReference.cache
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\obj\Debug\net5.0\ConceitosCsharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\obj\Debug\net5.0\ConceitosCsharp.AssemblyInfoInputs.cache
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\obj\Debug\net5.0\ConceitosCsharp.AssemblyInfo.cs
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\obj\Debug\net5.0\ConceitosCsharp.csproj.CoreCompileInputs.cache
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\obj\Debug\net5.0\ConceitosCsharp.dll
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\obj\Debug\net5.0\ref\ConceitosCsharp.dll
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\obj\Debug\net5.0\ConceitosCsharp.pdb
+C:\Users\taill\OneDrive\Documents\Conceitos\ConceitosCsharp\ConceitosCsharp\obj\Debug\net5.0\ConceitosCsharp.genruntimeconfig.cache
