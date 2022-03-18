@@ -6,7 +6,7 @@ namespace ConceitosCsharp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Oloquinho meu");
         }
     }
 }
