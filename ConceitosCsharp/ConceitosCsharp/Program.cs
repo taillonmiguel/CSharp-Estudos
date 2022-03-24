@@ -21,12 +21,14 @@ namespace ConceitosCsharp
             WorkerLevel level = Enum.Parse<WorkerLevel>(Console.ReadLine());
             Console.Write("Salario Base: ");
             double salarioBase = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
+            //Criando Objeto Departamento
             Departamento departament = new Departamento(departamento);
+            //Criando Objeto Worker com os parametros
             Worker worker = new Worker(nome, level, salarioBase, departament);
 
             Console.Write("Quantos contratos para esse trabalhador? ");
             int quantidade = int.Parse(Console.ReadLine());
+            //Criando *HourContract*
             for(int i =1; i<= quantidade; i++)
             {
                 Console.WriteLine($"Enter {i} contract data: ");
@@ -36,6 +38,7 @@ namespace ConceitosCsharp
                 double valorPorHora = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
                 Console.Write("Duração (horas): ");
                 int hours = int.Parse(Console.ReadLine());
+                //Adicionado no objeto HourContract
                 HourContract contrato = new HourContract(data, valorPorHora, hours);
                 worker.AdicionarContrato(contrato);
             }
