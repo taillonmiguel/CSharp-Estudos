@@ -1,4 +1,5 @@
 ﻿using ConceitosCsharp.Atividade;
+using ConceitosCsharp.Atividade.Atividade_Post;
 using ConceitosCsharp.Atividade.Enum;
 using ConceitosCsharp.Classes;
 using ConceitosCsharp.Classes.Enums;
@@ -11,7 +12,10 @@ namespace ConceitosCsharp
     {
         static void Main(string[] args)
         {
-
+            Comentar();
+        }
+        public static void Trab()
+        {
             Console.Write("Enter Departament's name: ");
             string departamento = Console.ReadLine();
             Console.WriteLine("Enter Worker data:");
@@ -29,7 +33,7 @@ namespace ConceitosCsharp
             Console.Write("Quantos contratos para esse trabalhador? ");
             int quantidade = int.Parse(Console.ReadLine());
             //Criando *HourContract*
-            for(int i =1; i<= quantidade; i++)
+            for (int i = 1; i <= quantidade; i++)
             {
                 Console.WriteLine($"Enter {i} contract data: ");
                 Console.Write("Data (DD/MM/YYYY): ");
@@ -48,7 +52,26 @@ namespace ConceitosCsharp
             int ano = int.Parse(mesEAno.Substring(3));
             Console.WriteLine("Name: " + worker.Name);
             Console.WriteLine("Departamento" + worker.Departamento.Nome);
-            Console.WriteLine("Income for" + mesEAno + ": " + worker.Renda(ano,mes));
+            Console.WriteLine("Income for" + mesEAno + ": " + worker.Renda(ano, mes));
+        }
+
+        public static void Comentar()
+        {
+            Comment primeiroComentario = new Comment("Have a nice trip");
+            Comment segundoComentario = new Comment("")
+
+            Console.WriteLine("Momento: ");
+            DateTime momento = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Titulo: ");
+            string titulo = Console.ReadLine();
+            Console.WriteLine("Conteudo: ");
+            string conteudo = Console.ReadLine();
+            Console.WriteLine("Likes: ");
+            int likes = int.Parse(Console.ReadLine());
+
+            Post post = new Post(momento, titulo, conteudo, likes);
+
+
 
         }
     }
