@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "APYVxwCykcblqOfM5T4v7ZYVWudE/lxSOCSJKBjPodto/yHgykgiiuHQ5eRe0CL8d3Ea++7sx/Ada1j534DiSA==",
+  "dgSpecHash": "MPlTQ9gV0MaQ/RnFdr8Ujj9K6bbqzL/KvPnpwb+4ckJ3QnFg4v4HdwzKkiHUBerBq8waEIMACAy95UQajwjcEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\taill\\OneDrive\\Documents\\Conceitos\\ConceitosCsharp\\ConceitosCsharp\\ConceitosCsharp.csproj",
+  "projectFilePath": "C:\\Users\\03979182240\\Documents\\POO\\CSharp-Estudos\\ConceitosCsharp\\ConceitosCsharp\\ConceitosCsharp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\taill\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+    "C:\\Users\\03979182240\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
   ],
   "logs": []
 }

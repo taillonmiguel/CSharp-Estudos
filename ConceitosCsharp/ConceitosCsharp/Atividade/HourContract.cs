@@ -15,7 +15,6 @@ namespace ConceitosCsharp.Atividade
             ValorPorHora = valorPorHora;
             Horas = horas;
         }
-
         public DateTime Data { get; set; }
         public double ValorPorHora { get; set; }
         public int Horas { get; set; }
