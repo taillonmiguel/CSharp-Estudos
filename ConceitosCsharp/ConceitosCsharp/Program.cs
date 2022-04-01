@@ -1,8 +1,9 @@
 ﻿using ConceitosCsharp.Atividade;
+using ConceitosCsharp.Atividade.Atividade;
+using ConceitosCsharp.Atividade.Atividade.Enum;
 using ConceitosCsharp.Atividade.Atividade_Post;
 using ConceitosCsharp.Atividade.Enum;
-using ConceitosCsharp.Classes;
-using ConceitosCsharp.Classes.Enums;
+
 using System;
 using System.Globalization;
 
@@ -12,7 +13,7 @@ namespace ConceitosCsharp
     {
         static void Main(string[] args)
         {
-            Comentar();
+            Order();
         }
         public static void Trab()
         {
@@ -58,7 +59,7 @@ namespace ConceitosCsharp
         public static void Comentar()
         {
             Comment primeiroComentario = new Comment("Have a nice trip");
-            Comment segundoComentario = new Comment("")
+            Comment segundoComentario = new Comment("nice do nice");
 
             Console.WriteLine("Momento: ");
             DateTime momento = DateTime.Parse(Console.ReadLine());
@@ -67,11 +68,62 @@ namespace ConceitosCsharp
             Console.WriteLine("Conteudo: ");
             string conteudo = Console.ReadLine();
             Console.WriteLine("Likes: ");
+            int like = int.Parse(Console.ReadLine());
+
+            Post post = new Post(momento, titulo, conteudo, like);
+            post.AdicionarComentario(primeiroComentario);
+            post.AdicionarComentario(segundoComentario);
+
+            Comment c1 = new Comment("houve um equivico");
+            Comment c2 = new Comment("Oloco Bixo");
+
+            Console.WriteLine("Momento: ");
+            DateTime dataMomento = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Titulo: ");
+            string titulos = Console.ReadLine();
+            Console.WriteLine("Conteudo: ");
+            string conteudos = Console.ReadLine();
+            Console.WriteLine("Likes: ");
             int likes = int.Parse(Console.ReadLine());
 
-            Post post = new Post(momento, titulo, conteudo, likes);
+            Post pos2 = new Post(dataMomento, titulos, conteudos, likes);
+            Console.WriteLine(pos2);
+            Console.WriteLine(post);
+        }
+        public static void Order()
+        {
+            Order orders = new Order();
+            Console.WriteLine("Enter Cliente data: ");
+            Console.Write("Name: ");
+            string nome = Console.ReadLine();
+            Console.Write("Email: ");
+            string email = Console.ReadLine();
+            Console.Write("Birth Date (DD/MM/YYYY): ");
+            DateTime birthDate = DateTime.Parse(Console.ReadLine());
+            Client client = new Client(nome, email, birthDate);
+
+            Console.Write("Status: ");
+            OrderStatus orderStatus = Enum.Parse<OrderStatus>(Console.ReadLine());
+            Console.Write("How many items to this order? ");
+            int quantidade = int.Parse(Console.ReadLine());
 
 
+            for(int i = 1; i<=quantidade; i++)
+            {
+                Console.WriteLine($"Enter #{i} item data");
+                Console.Write("Product name: ");
+                string productName = Console.ReadLine();
+                Console.Write("Product Price: ");
+                double productPrice = double.Parse(Console.ReadLine());
+                Console.Write("Quantity: ");
+                int quantity = int.Parse(Console.ReadLine());
+                Product product = new Product(productName, productPrice);
+                OrderItem orderItem = new OrderItem(quantity, productPrice, product);
+                orders = new Order(orderStatus, client);
+                orders.AddItem(orderItem);
+            }
+
+            Console.WriteLine(orders);
 
         }
     }

@@ -35,5 +35,21 @@ namespace ConceitosCsharp.Atividade.Atividade_Post
         {
             Comentarios.Remove(comment);
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(Title);
+            sb.Append(Likes);
+            sb.Append(" Likes - ");
+            sb.Append(Momment.ToString("dd/MM/yyyy HH:mm:ss"));
+            sb.AppendLine(Content);
+            sb.AppendLine("Comments: ");
+            foreach(var c in Comentarios)
+            {
+                sb.AppendLine(c.Texto);
+            }
+            return sb.ToString();
+        }
     }
 }

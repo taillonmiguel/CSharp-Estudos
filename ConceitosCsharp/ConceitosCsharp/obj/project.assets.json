@@ -8,23 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\03979182240\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\taill\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\03979182240\\Documents\\POO\\CSharp-Estudos\\ConceitosCsharp\\ConceitosCsharp\\ConceitosCsharp.csproj",
+      "projectUniqueName": "C:\\Users\\taill\\OneDrive\\Documents\\Conceitos\\ConceitosCsharp\\ConceitosCsharp\\ConceitosCsharp.csproj",
       "projectName": "ConceitosCsharp",
-      "projectPath": "C:\\Users\\03979182240\\Documents\\POO\\CSharp-Estudos\\ConceitosCsharp\\ConceitosCsharp\\ConceitosCsharp.csproj",
-      "packagesPath": "C:\\Users\\03979182240\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\03979182240\\Documents\\POO\\CSharp-Estudos\\ConceitosCsharp\\ConceitosCsharp\\obj\\",
+      "projectPath": "C:\\Users\\taill\\OneDrive\\Documents\\Conceitos\\ConceitosCsharp\\ConceitosCsharp\\ConceitosCsharp.csproj",
+      "packagesPath": "C:\\Users\\taill\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\taill\\OneDrive\\Documents\\Conceitos\\ConceitosCsharp\\ConceitosCsharp\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\03979182240\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\taill\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
