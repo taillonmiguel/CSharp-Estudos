@@ -1,10 +1,16 @@
 ﻿using ConceitosCsharp.Atividade;
 using ConceitosCsharp.Atividade.Atividade;
 using ConceitosCsharp.Atividade.Atividade.Enum;
+using ConceitosCsharp.Atividade.Atividade_Employe;
+using ConceitosCsharp.Atividade.Atividade_Pessoa;
 using ConceitosCsharp.Atividade.Atividade_Post;
+using ConceitosCsharp.Atividade.Atividade_produto;
+using ConceitosCsharp.Atividade.Atividade_Shapee;
+using ConceitosCsharp.Atividade.Atividade_Shapee.Enum_Shapee;
 using ConceitosCsharp.Atividade.Enum;
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace ConceitosCsharp
@@ -13,7 +19,7 @@ namespace ConceitosCsharp
     {
         static void Main(string[] args)
         {
-            Order();
+            CalcularImpostoPessoa();
         }
         public static void Trab()
         {
@@ -108,7 +114,7 @@ namespace ConceitosCsharp
             int quantidade = int.Parse(Console.ReadLine());
 
 
-            for(int i = 1; i<=quantidade; i++)
+            for (int i = 1; i <= quantidade; i++)
             {
                 Console.WriteLine($"Enter #{i} item data");
                 Console.Write("Product name: ");
@@ -125,6 +131,158 @@ namespace ConceitosCsharp
 
             Console.WriteLine(orders);
 
+
+        }
+        public static void Employeer()
+        {
+            List<Employee> employees = new List<Employee>();
+
+            Console.Write("Enter the number of employees: ");
+            int quantidade = int.Parse(Console.ReadLine());
+            for (int i = 1; i <= quantidade; i++)
+            {
+                Console.WriteLine($"Employee #{i} data: ");
+                Console.Write("Outsourced(Y/N)? ");
+                char opc = char.Parse(Console.ReadLine());
+                Console.Write("Name: ");
+                string name = Console.ReadLine();
+                Console.Write("Hours: ");
+                int hours = int.Parse(Console.ReadLine());
+                Console.Write("Value per hour: ");
+                double valuePerHour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                if (opc == 'y' || opc == 'Y')
+                {
+                    Console.Write("Additional charge: ");
+                    double additional = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    employees.Add(new OutsourcedEmployee(name, hours, valuePerHour, additional));
+                }
+                else
+                {
+                    employees.Add(new Employee(name, hours, valuePerHour));
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("Payments: ");
+            foreach (Employee emp in employees)
+            {
+                Console.WriteLine(emp.Nome + " - $ " + emp.Payment().ToString("F2", CultureInfo.InvariantCulture));
+            }
+
+        }
+        public static void Producto()
+        {
+            List<Products> product = new List<Products>();
+            Console.Write("Enter the number of products: ");
+            int quantidade = int.Parse(Console.ReadLine());
+            for (var i = 1; i <= quantidade; i++)
+            {
+                Console.WriteLine($"Product {i} data: ");
+                Console.Write("Commom used, or imported (c/u/i)? ");
+                char opc = char.Parse(Console.ReadLine());
+                Console.Write("Name: ");
+                string name = Console.ReadLine();
+                Console.Write("Price: ");
+                double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                if (opc == 'I' || opc == 'i')
+                {
+                    Console.WriteLine("Customs fee: ");
+                    double customFee = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    product.Add(new ImportedProduct(name, price, customFee));
+                }
+                else if (opc == 'u' || opc == 'U')
+                {
+                    Console.WriteLine("Manufacture date (DD/MM/YYYY): ");
+                    DateTime manufacture = DateTime.Parse(Console.ReadLine());
+                    product.Add(new UsedProduct(name, price, manufacture));
+                }
+                else if (opc == 'c' || opc == 'C')
+                {
+                    product.Add(new Products(name, price));
+                }
+            }
+
+            foreach (var item in product)
+            {
+                Console.WriteLine(item.PriceTag());
+            }
+        }
+        public static void Area()
+        {
+            List<Shapee> shapee = new List<Shapee>();
+            Console.Write("Enter the number of shapees: ");
+            int quantidade = int.Parse(Console.ReadLine());
+
+            for (var i = 1; i <= quantidade; i++)
+            {
+                Console.WriteLine($"Shapee #{i} data: ");
+                Console.Write("Rectangle or Circle? ");
+                char type = char.Parse(Console.ReadLine());
+                Console.Write("Color (Black/Blue/Red): ");
+                Color color = Enum.Parse<Color>(Console.ReadLine());
+                if (type == 'R' || type == 'r')
+                {
+                    Console.Write("Width: ");
+                    double width = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    Console.Write("Heigth: ");
+                    double height = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    shapee.Add(new Rectangle(color, width, height));
+                }
+                else if (type == 'C' || type == 'c')
+                {
+                    Console.Write("Radius: ");
+                    double radius = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    shapee.Add(new Circle(radius, color));
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("SHAPE AREAS: ");
+            foreach (var shape in shapee)
+            {
+                Console.WriteLine(shape.Area().ToString("F2", CultureInfo.InvariantCulture));
+            }
+
+        }
+
+        public static void CalcularImpostoPessoa()
+        {
+            List<Pessoa> pessoa = new List<Pessoa>();
+            Console.Write("Enter the number of tax payers: ");
+            int quantidade = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= quantidade; i++)
+            {
+                Console.Write("Individual or company (i/c)? ");
+                char opc = char.Parse(Console.ReadLine());
+                Console.WriteLine($"Tax payer #{i} data:");
+                Console.Write("Name: ");
+                string name = Console.ReadLine();
+                Console.Write("Anual income: ");
+                double rendaAnual = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                if(opc == 'I' || opc == 'i')
+                {
+                    Console.Write("Health expenditures: ");
+                    double gastosCOmsaude = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    pessoa.Add(new PessoaFisica(gastosCOmsaude, name, rendaAnual));
+                }
+                else if(opc == 'C' || opc == 'c')
+                {
+                    Console.Write("Number of employess: ");
+                    int quantidadeDePessoas = int.Parse(Console.ReadLine());
+                    pessoa.Add(new PessoaJuridica(quantidadeDePessoas, name, rendaAnual));
+                }
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Taxes PAID: ");
+            double soma = 0.0;
+            foreach(var item in pessoa)
+            {
+                Console.WriteLine(item.Nome + ": $ "+ item.Imposto().ToString("F2", CultureInfo.InvariantCulture));
+                soma += item.Imposto();
+            }
+            Console.WriteLine();
+            Console.WriteLine("TOTAL TAXES: $ " + soma.ToString("F2", CultureInfo.InvariantCulture));
         }
     }
 }
