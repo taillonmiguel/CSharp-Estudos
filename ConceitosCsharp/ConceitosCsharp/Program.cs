@@ -272,8 +272,8 @@ namespace ConceitosCsharp
                     pessoa.Add(new PessoaJuridica(quantidadeDePessoas, name, rendaAnual));
                 }
             }
-            Console.WriteLine();
 
+            Console.WriteLine();
             Console.WriteLine("Taxes PAID: ");
             double soma = 0.0;
             foreach(var item in pessoa)
