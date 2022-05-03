@@ -8,10 +8,12 @@ using ConceitosCsharp.Atividade.Atividade_produto;
 using ConceitosCsharp.Atividade.Atividade_Shapee;
 using ConceitosCsharp.Atividade.Atividade_Shapee.Enum_Shapee;
 using ConceitosCsharp.Atividade.Enum;
-
+using ConceitosCsharp.Atividade.Reservation;
+using ConceitosCsharp.Atividade.Reservation.Execptions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 
 namespace ConceitosCsharp
 {
@@ -19,7 +21,7 @@ namespace ConceitosCsharp
     {
         static void Main(string[] args)
         {
-            CalcularImpostoPessoa();
+            ExecesaoReservation();
         }
         public static void Trab()
         {
@@ -61,7 +63,6 @@ namespace ConceitosCsharp
             Console.WriteLine("Departamento" + worker.Departamento.Nome);
             Console.WriteLine("Income for" + mesEAno + ": " + worker.Renda(ano, mes));
         }
-
         public static void Comentar()
         {
             Comment primeiroComentario = new Comment("Have a nice trip");
@@ -242,7 +243,6 @@ namespace ConceitosCsharp
             }
 
         }
-
         public static void CalcularImpostoPessoa()
         {
             List<Pessoa> pessoa = new List<Pessoa>();
@@ -283,6 +283,64 @@ namespace ConceitosCsharp
             }
             Console.WriteLine();
             Console.WriteLine("TOTAL TAXES: $ " + soma.ToString("F2", CultureInfo.InvariantCulture));
+        }
+        public static void Excesao()
+        {
+            FileStream fs = null;
+            try
+            {
+                fs = new FileStream(@"C:\temp\data.txt", FileMode.Open);
+                StreamReader sr = new StreamReader(fs);
+                string line = sr.ReadLine();
+                Console.WriteLine(line);
+            }
+            catch(DirectoryNotFoundException e)
+            {
+                Console.WriteLine(e.Message);                
+            }
+            finally
+            {
+                if (fs != null)
+                {
+                    fs.Close();
+                }
+            }
+           
+        }
+        public static void ExecesaoReservation()
+        {            
+            try
+            {                
+                Console.Write("Room number: ");
+                int number = int.Parse(Console.ReadLine());
+                Console.Write("Check-in date (dd/MM/yyyy): ");
+                DateTime checkIn = DateTime.Parse(Console.ReadLine());
+                Console.Write("Check-out date (dd/MM/yyyy): ");
+                DateTime checkOut = DateTime.Parse(Console.ReadLine());
+                Reservation reservation = new(number, checkIn, checkOut);
+                Console.WriteLine("Reservation: " + reservation);
+
+
+                Console.WriteLine();
+                Console.WriteLine("Enteder data to update the reservation: ");
+                Console.Write("Check-in date (dd/MM/yyyy): ");
+                checkIn = DateTime.Parse(Console.ReadLine());
+                Console.Write("Check-out date (dd/MM/yyyy): ");
+                checkOut = DateTime.Parse(Console.ReadLine());
+                reservation = new(number, checkIn, checkOut);
+                reservation.Duration();
+
+                reservation.UpdateDates(checkIn, checkOut);
+                Console.WriteLine("Reservation: " + reservation);
+
+
+            }
+            catch (DomainException e)
+            {
+                Console.WriteLine("Erro " + e.Message);         
+            }
+            
+            
         }
     }
 }

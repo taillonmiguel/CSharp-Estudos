@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Atividade\Execptions\" />
     <Folder Include="Classes\Enums\" />
   </ItemGroup>
 
