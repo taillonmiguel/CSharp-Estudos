@@ -8,6 +8,8 @@ using ConceitosCsharp.Atividade.Atividade_produto;
 using ConceitosCsharp.Atividade.Atividade_Shapee;
 using ConceitosCsharp.Atividade.Atividade_Shapee.Enum_Shapee;
 using ConceitosCsharp.Atividade.Enum;
+using ConceitosCsharp.Atividade.Execptions_Account;
+using ConceitosCsharp.Atividade.Execptions_Account.Exceptions__Account;
 using ConceitosCsharp.Atividade.Reservation;
 using ConceitosCsharp.Atividade.Reservation.Execptions;
 using System;
@@ -21,7 +23,7 @@ namespace ConceitosCsharp
     {
         static void Main(string[] args)
         {
-            ExecesaoReservation();
+            Directinfo();
         }
         public static void Trab()
         {
@@ -259,13 +261,13 @@ namespace ConceitosCsharp
                 Console.Write("Anual income: ");
                 double rendaAnual = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-                if(opc == 'I' || opc == 'i')
+                if (opc == 'I' || opc == 'i')
                 {
                     Console.Write("Health expenditures: ");
                     double gastosCOmsaude = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
                     pessoa.Add(new PessoaFisica(gastosCOmsaude, name, rendaAnual));
                 }
-                else if(opc == 'C' || opc == 'c')
+                else if (opc == 'C' || opc == 'c')
                 {
                     Console.Write("Number of employess: ");
                     int quantidadeDePessoas = int.Parse(Console.ReadLine());
@@ -276,9 +278,9 @@ namespace ConceitosCsharp
             Console.WriteLine();
             Console.WriteLine("Taxes PAID: ");
             double soma = 0.0;
-            foreach(var item in pessoa)
+            foreach (var item in pessoa)
             {
-                Console.WriteLine(item.Nome + ": $ "+ item.Imposto().ToString("F2", CultureInfo.InvariantCulture));
+                Console.WriteLine(item.Nome + ": $ " + item.Imposto().ToString("F2", CultureInfo.InvariantCulture));
                 soma += item.Imposto();
             }
             Console.WriteLine();
@@ -294,9 +296,9 @@ namespace ConceitosCsharp
                 string line = sr.ReadLine();
                 Console.WriteLine(line);
             }
-            catch(DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException e)
             {
-                Console.WriteLine(e.Message);                
+                Console.WriteLine(e.Message);
             }
             finally
             {
@@ -305,12 +307,12 @@ namespace ConceitosCsharp
                     fs.Close();
                 }
             }
-           
+
         }
         public static void ExecesaoReservation()
-        {            
+        {
             try
-            {                
+            {
                 Console.Write("Room number: ");
                 int number = int.Parse(Console.ReadLine());
                 Console.Write("Check-in date (dd/MM/yyyy): ");
@@ -337,10 +339,163 @@ namespace ConceitosCsharp
             }
             catch (DomainException e)
             {
-                Console.WriteLine("Erro " + e.Message);         
+                Console.WriteLine("Erro " + e.Message);
             }
-            
-            
+
+
+        }
+        public static void Excessao()
+        {
+            Console.WriteLine("Enter account data");
+            Console.Write("Number: ");
+            int number = int.Parse(Console.ReadLine());
+            Console.Write("Holder: ");
+            string holder = Console.ReadLine();
+            Console.Write("Initial balance: ");
+            double balance = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Console.Write("Withdraw limit: ");
+            double withdrawLimit = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            Account account = new Account(number, holder, balance, withdrawLimit);
+
+            Console.Write("Enter amount for withdraw: ");
+            double amount = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            try
+            {
+                account.Withdraw(amount);
+                Console.WriteLine(account);
+            }
+            catch (AccountException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+        public static void FileIo()
+        {
+            string sourcePath = @"c:\prova\file1.txt";
+            string targePath = @"c:\prova\file2.txt";
+
+            try
+            {
+                FileInfo fileInfo = new FileInfo(sourcePath);
+                fileInfo.CopyTo(targePath);
+
+                string[] lines = File.ReadAllLines(sourcePath);
+
+                foreach (var item in lines)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("an error ocurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+        public static void FileStreamEStreamReader()
+        {
+            string path = @"c:\prova\file1.txt";
+
+            StreamReader sr = null;
+
+            try
+            {
+                sr = File.OpenText(path);
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+                    Console.WriteLine(line);
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error ocurred");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (sr != null)
+                    sr.Close();
+            }
+        }
+        public static void UsingAtv()
+        {
+            string path = @"c:\prova\file1.txt";
+
+            try
+            {
+                using (var sr = File.OpenText(path))
+                {
+                    if (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        Console.WriteLine(line);
+                    }
+                }
+
+
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error ocurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+        public static void Streamwriter()
+        {
+            var sourcePath = @"c:\prova\file1.txt";
+            var targetPath = @"c:\prova\file2.txt";
+
+            try
+            {
+                string[] lines = File.ReadAllLines(sourcePath);
+                using (var sw = File.AppendText(targetPath))
+                {
+                    foreach (var item in lines)
+                    {
+                        sw.WriteLine(item.ToUpper());
+                    }
+                }
+            }
+            catch(IOException e)
+            {
+                Console.WriteLine("An error ocurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+        public static void Directinfo()
+        {
+            string path = @"c:\prova\myFolder";
+
+            try
+            {
+                IEnumerable<string> folders = Directory.EnumerateDirectories(path, "*.*", SearchOption.AllDirectories);
+                Console.WriteLine("FOLDERS");
+                foreach(var item in folders)
+                {
+                    Console.WriteLine(item);
+                }
+
+                IEnumerable<string> files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories);
+                Console.WriteLine("FILES");
+                foreach(var item in files)
+                {
+                    Console.WriteLine(item);
+                }
+
+                var criarpasta = Directory.CreateDirectory(path + @"\newFolder");
+            }
+            catch(IOException e)
+            {
+                Console.WriteLine("An error ocurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+        public static void PathClass()
+        {
+
         }
     }
 }
