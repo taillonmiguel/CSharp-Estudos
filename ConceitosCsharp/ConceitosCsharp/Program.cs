@@ -12,6 +12,9 @@ using ConceitosCsharp.Atividade.Execptions_Account;
 using ConceitosCsharp.Atividade.Execptions_Account.Exceptions__Account;
 using ConceitosCsharp.Atividade.Reservation;
 using ConceitosCsharp.Atividade.Reservation.Execptions;
+using ConceitosCsharp.aulas.Atividade_interface.Entitiess;
+using ConceitosCsharp.aulas.Atividade_interface.Entitiess.ServiceRuim;
+using ConceitosCsharp.aulas.AtividadeFileIO;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -23,7 +26,7 @@ namespace ConceitosCsharp
     {
         static void Main(string[] args)
         {
-            Directinfo();
+            Aluguel();
         }
         public static void Trab()
         {
@@ -371,130 +374,157 @@ namespace ConceitosCsharp
             }
 
         }
-        public static void FileIo()
+        public static void PrimeiroFile()
         {
-            string sourcePath = @"c:\prova\file1.txt";
-            string targePath = @"c:\prova\file2.txt";
-
+            var lerDados = @"c:\prova\sumary.csv";
+            var dadosCopiados = @"C:\prova\sumarycopy.csv";
             try
             {
-                FileInfo fileInfo = new FileInfo(sourcePath);
-                fileInfo.CopyTo(targePath);
-
-                string[] lines = File.ReadAllLines(sourcePath);
-
-                foreach (var item in lines)
+                //associando objeto ao fileInfo.
+                FileInfo fileInfo = new FileInfo(lerDados);
+                //uso a operação CopyTo e copio o arquivo do lerDados para dadosCopiados.
+                fileInfo.CopyTo(dadosCopiados);
+                //usar a classe statica File para ler todas as linhas associada ao arquivo 
+                string[] lines = File.ReadAllLines(dadosCopiados); 
+                foreach(var item in lines)
                 {
                     Console.WriteLine(item);
+                    
                 }
+
             }
-            catch (IOException e)
+            catch(IOException ex)
             {
-                Console.WriteLine("an error ocurred");
-                Console.WriteLine(e.Message);
+                Console.WriteLine("ocorreu um erro");
+                Console.WriteLine(ex.Message);
             }
         }
-        public static void FileStreamEStreamReader()
+        public static void SegundoVideo()
         {
-            string path = @"c:\prova\file1.txt";
-
-            StreamReader sr = null;
+            var lerDados = @"c:\prova\sumary.csv";
+            //FileStream filStream = null;
+            StreamReader streamReader = null;
 
             try
             {
-                sr = File.OpenText(path);
-                while (!sr.EndOfStream)
+                //filStream = new FileStream(lerDados, FileMode.Open);
+                streamReader = File.OpenText(lerDados);                
+                while (!streamReader.EndOfStream)
                 {
-                    string line = sr.ReadLine();
-                    Console.WriteLine(line);
+                    //lendo a linha
+                    var Lerlinha = streamReader.ReadLine();
+                    //escrevendo a linha na tela
+                    Console.WriteLine(Lerlinha);
                 }
             }
-            catch (IOException e)
+            catch(IOException ex)
             {
-                Console.WriteLine("An error ocurred");
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Ocorreu um erro\n" + ex.Message );
             }
             finally
             {
-                if (sr != null)
-                    sr.Close();
+                if(streamReader != null)
+                {
+                    streamReader.Close();
+                }
+                /*if(filStream != null)
+                {
+                    filStream.Close();
+                }*/
             }
         }
-        public static void UsingAtv()
+        public static void TerceiroVideoUsing()
         {
-            string path = @"c:\prova\file1.txt";
+            //variavel para ter o caminho do arquivo.
+            var arquivo = @"c:\prova\sumary.csv";
+            try
+            {
+               // using (var fileStream = new FileStream(arquivo, FileMode.Open))
+              //  {
+                    using (var streamReader = File.OpenText(arquivo))
+                    {
+                        while (!streamReader.EndOfStream)
+                        {
+                            //lendo a linha
+                            var linha = streamReader.ReadLine();
+                            //escrevar a linha
+                            Console.WriteLine(linha);
+                        }
+                    }
+               // }
+            }
+            catch(IOException ex)
+            {
+                Console.WriteLine("Ocorreu um erro");
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public static void AtividadeFixacaoIo()
+        {
+            Console.WriteLine("Enter file full path: ");
+            string sourceFilePath = @"c:\prova\texto.csv";
 
             try
             {
-                using (var sr = File.OpenText(path))
+                //lendo todas as linhas
+                string[] lines = File.ReadAllLines(sourceFilePath);
+
+                //procuro a pasta do arquivo
+                var sourceFolderPath = Path.GetDirectoryName(sourceFilePath);
+                 var targeFolderPath = sourceFolderPath + @"\out";
+                var targeFilePath = targeFolderPath + @"\summary.csv";
+                //crio a pasta
+                Directory.CreateDirectory(targeFolderPath);
+                using(StreamWriter sw = File.AppendText(targeFilePath))
                 {
-                    if (!sr.EndOfStream)
+                    foreach(var item in lines)
                     {
-                        string line = sr.ReadLine();
-                        Console.WriteLine(line);
+                        //separar o nome, preço, quantidade por virgula
+                        string[] posiccao = item.Split(',');
+                        var name = posiccao[0];
+                        var price = double.Parse(posiccao[1], CultureInfo.InvariantCulture);
+                        var quantidade = int.Parse(posiccao[2]);
+
+                        var produto = new ProductIO(quantidade, name, price);
+                        //salvo esses itens na pasta sumarry
+                        sw.WriteLine(produto.Name + "," + produto.Total().ToString("F2", CultureInfo.InvariantCulture));
+                        //escrevo na tela
+                        Console.WriteLine(produto.Name + "," + produto.Total().ToString("F2", CultureInfo.InvariantCulture));
                     }
                 }
 
-
             }
-            catch (IOException e)
+            catch(IOException ex)
             {
-                Console.WriteLine("An error ocurred");
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Ocorreu um erro");
+                Console.WriteLine(ex.Message);
             }
         }
-        public static void Streamwriter()
+        public static void Aluguel()
         {
-            var sourcePath = @"c:\prova\file1.txt";
-            var targetPath = @"c:\prova\file2.txt";
+            Console.WriteLine("Enter rental data");
+            Console.WriteLine("Car Model: ");
+            string model = Console.ReadLine();
+            Console.WriteLine("Pickup (dd/MM/yy hh:mm): ");
+            DateTime start = DateTime.ParseExact(Console.ReadLine(), 
+                "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+            Console.WriteLine("Return (dd/MM/yy hh:mm): ");
+            DateTime finish = DateTime.ParseExact(Console.ReadLine(), 
+                "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+            
+            Console.WriteLine("Enter price per hour: ");
+            double hour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Console.WriteLine("Enter price per day: ");
+            double day = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-            try
-            {
-                string[] lines = File.ReadAllLines(sourcePath);
-                using (var sw = File.AppendText(targetPath))
-                {
-                    foreach (var item in lines)
-                    {
-                        sw.WriteLine(item.ToUpper());
-                    }
-                }
-            }
-            catch(IOException e)
-            {
-                Console.WriteLine("An error ocurred");
-                Console.WriteLine(e.Message);
-            }
-        }
-        public static void Directinfo()
-        {
-            string path = @"c:\prova\myFolder";
+            CarRental carRental = new CarRental(start, finish, new Vehicle(model));
 
-            try
-            {
-                IEnumerable<string> folders = Directory.EnumerateDirectories(path, "*.*", SearchOption.AllDirectories);
-                Console.WriteLine("FOLDERS");
-                foreach(var item in folders)
-                {
-                    Console.WriteLine(item);
-                }
+            RentalService rentalService = new RentalService(hour, day, new BrazilTaxService());
 
-                IEnumerable<string> files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories);
-                Console.WriteLine("FILES");
-                foreach(var item in files)
-                {
-                    Console.WriteLine(item);
-                }
+            rentalService.ProcessInvoice(carRental);
 
-                var criarpasta = Directory.CreateDirectory(path + @"\newFolder");
-            }
-            catch(IOException e)
-            {
-                Console.WriteLine("An error ocurred");
-                Console.WriteLine(e.Message);
-            }
-        }
-        public static void PathClass()
-        {
+            Console.WriteLine("INVOICE: ");
+            Console.WriteLine(carRental.Invoice);
 
         }
     }
