@@ -26,7 +26,10 @@ namespace ConceitosCsharp
     {
         static void Main(string[] args)
         {
-            Aluguel();
+            var resultado = Impares(2, 5);
+            
+            resultado.ForEach(x=> Console.WriteLine(x));
+
         }
         public static void Trab()
         {
@@ -526,6 +529,21 @@ namespace ConceitosCsharp
             Console.WriteLine("INVOICE: ");
             Console.WriteLine(carRental.Invoice);
 
+        }
+
+        public static List<int> Impares(int l, int r)
+        {
+            var a = new List<int>();
+            for (var i = l; i<=r; i++)
+            {                
+                if(i % 2 !=0 )
+                {
+                    a.Add(i);
+                }
+            }
+
+            return a;
+            
         }
     }
 }
